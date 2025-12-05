@@ -1,0 +1,3 @@
+[console_scripts]
+bt_run = hospital_bt_nav.bt_navigator:main
+

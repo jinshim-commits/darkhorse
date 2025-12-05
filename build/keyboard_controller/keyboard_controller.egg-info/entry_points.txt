@@ -1,0 +1,3 @@
+[console_scripts]
+keyboard_node = keyboard_controller.keyboard_node:main
+

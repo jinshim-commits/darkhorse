@@ -1,0 +1,3 @@
+[console_scripts]
+qr_scanner_node = qr_scanner.qr_scanner_node:main
+
