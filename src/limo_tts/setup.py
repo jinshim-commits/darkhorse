@@ -23,7 +23,7 @@ setup(
         ],
     },
     entry_points={
-        'console_scripts': [
+        'console_scripts': ['limo_tts = limo_tts.limo_tts:main'
         ],
     },
 )

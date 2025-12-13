@@ -1,8 +1,8 @@
 # Goal: 읽을 텍스트
-string text "Limo is ready!"
+string text
 ---
 # Result: 성공 여부
-bool success false
+bool success
 ---
 # Feedback: 현재 진행률
-float32 progress 0.00
+float32 progress
