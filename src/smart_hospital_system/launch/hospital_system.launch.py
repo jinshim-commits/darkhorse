@@ -3,6 +3,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     return LaunchDescription([
+
         # QR API 서버
         Node(
             package='smart_hospital_system',
@@ -10,25 +11,17 @@ def generate_launch_description():
             output='screen'
         ),
 
-        # 환자 UI
+        # 환자 UI만 실행
         Node(
             package='smart_hospital_system',
             executable='patient_ui',
             output='screen'
         ),
 
-        # 의사 UI
+        # 로봇 이동 + 도착 신호 담당
         Node(
-            package='smart_hospital_system',
-            executable='doctor_ui',
-            output='screen'
-        ),
-
-        # 대시보드 UI
-        Node(
-            package='smart_hospital_system',
-            executable='dashboard_ui',
+            package='smart_dispatcher',
+            executable='dispatcher_node',
             output='screen'
         ),
     ])
-
