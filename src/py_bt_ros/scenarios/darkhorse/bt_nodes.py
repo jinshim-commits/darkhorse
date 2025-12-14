@@ -218,11 +218,33 @@ class KeepRunningUntilFailure(Node):
             
         # 자식이 성공했거나 실행 중이면 -> 나는 계속 실행 중(RUNNING) -> 다시 실행됨
         return Status.RUNNING
+
+# ---------------------------------------------------------
+# 6. Speak: TTS 액션 노드
+# ---------------------------------------------------------
+class Speak(ActionWithROSAction):
+    """
+    Docstring for Speak
+    TTS 액션 클라이언트 노드: limo_tts/limo_tts/speak_text 사용
+    added date 2025/dec/14 by Raybeak    
+    """
+    def __init__ (self, name, agent):
+        super().__init__(name, agent, (Speak, 'speak_text'))
+
+    def _build_goal(self, agent, blackboard):
+        text_to_speak = f"다음 진료과는 {blackboard.get('current_target_name', '알 수 없음')} 입니다."
+        goal = Speak.Goal()
+        goal.text = text_to_speak
+        print(f"[Speak] TTS 요청: {text_to_speak}")
+        return goal
+
+        
 # ---------------------------------------------------------
 # 노드 등록
 # ---------------------------------------------------------
 CUSTOM_ACTION_NODES = [
     'WaitForQR',
+    'speak',  # added 2025/dec/14
     'Think',
     'Move',
     'Doctor',
