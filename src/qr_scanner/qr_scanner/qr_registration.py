@@ -34,27 +34,23 @@ class QRRegistrationNode(Node):
             decoded_objects = decode(cv_image)
 
             for obj in decoded_objects:
+                # 1. JotForm에서 만든 QR 내용을 읽음 (예: "589201923...")
                 qr_data = obj.data.decode('utf-8')
-                self.get_logger().info(f"QR 인식 성공: {qr_data}")
+                self.get_logger().info(f"JotForm QR 인식됨: {qr_data}")
                 
-                # QR 데이터 파싱 (예: JSON 형식으로 데이터가 들어있다고 가정)
-                # 예: {"name": "홍길동", "symptom": "두통"}
-                
-                # 3. 다른 팀원들에게 보낼 메시지 구성
+                # 2. 팀원들에게 보낼 메시지 (JSON 형식으로 포장)
+                # 민석(스마트폰 UI), 소진(대시보드)에게 "이 ID 환자 받았다"고 알림
                 system_msg = {
                     "type": "qr_login",
-                    "patient_id": qr_data, # 혹은 파싱한 ID
+                    "patient_id": qr_data,  # JotForm ID 그대로 전송
                     "waiting_number": self.waiting_number
                 }
                 
+                # JSON으로 변환해서 퍼블리시
                 self.publisher_.publish(String(data=json.dumps(system_msg)))
-                self.get_logger().info(f"시스템 시작 신호 전송! (대기번호: {self.waiting_number})")
                 
                 self.waiting_number += 1
-                
-                # 인식 후 잠시 멈춤 (연속 인식 방지)
                 self.is_processing = True
-                # 실제로는 로봇이 출발하면 다시 False로 풀어주는 로직 필요
 
         except Exception as e:
             self.get_logger().error(f'Error: {e}')

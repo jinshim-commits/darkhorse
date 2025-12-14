@@ -1,32 +1,30 @@
-from setuptools import setup, find_packages
-import os
-from glob import glob
+from setuptools import find_packages, setup
 
-package_name = 'smart_dispatcher'
+package_name = 'smart_hospital_control'
 
 setup(
     name=package_name,
     version='0.0.0',
-    packages=find_packages(),   # <-- 반드시 이렇게 해야 함
+    packages=find_packages(exclude=['test']),
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-
-        # launch 파일 설치
-        (os.path.join('share', package_name, 'launch'),
-         glob('launch/*.launch.py')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='flynn',
-    maintainer_email='flynn@todo.todo',
+    maintainer_email='youdongoh67@gmail.com',
     description='TODO: Package description',
     license='TODO: License declaration',
-    tests_require=['pytest'],
+    extras_require={
+        'test': [
+            'pytest',
+        ],
+    },
     entry_points={
         'console_scripts': [
-            'dispatcher = smart_dispatcher.smart_dispatcher_node:main',
+            'control_ui = smart_hospital_control.control_ui:main',
         ],
     },
 )

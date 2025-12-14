@@ -1,1 +1,1 @@
-/home/flynn/darkhorse/src/robot_final/src/qr_scanner/setup.py
+/home/flynn/darkhorse/src/qr_scanner/setup.py
