@@ -4,3 +4,4 @@ py_bt_ros : python BT
 hospital_setup : 초기 병원 설정
 smart_dispatcher : 주행기능
 bringup : 통합 런치
+qr_scanner : 리모가 큐알 인식하게 만들었음
