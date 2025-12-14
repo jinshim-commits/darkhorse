@@ -234,7 +234,7 @@ class SpeakAction(ActionWithROSAction):
 
     def _build_goal(self, agent, blackboard):
         text_to_speak = f"{blackboard.get('current_target_name', '알 수 없음')} 에 도착 했습니다."
-        goal = SpeakAction.Goal()
+        goal = speakActionMsg.Goal()
         goal.text = text_to_speak
         print(f"[Speak] TTS 요청: {text_to_speak}")
         return goal    
