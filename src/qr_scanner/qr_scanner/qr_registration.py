@@ -11,10 +11,14 @@ class QRRegistrationNode(Node):
     def __init__(self):
         super().__init__('qr_registration_node')
         
+        self.declare_parameter('image_topic', '/camera/color/image_raw')
+        topic = self.get_parameter('image_topic').value
+
+
         # 1. 카메라 구독
         self.subscription = self.create_subscription(
             Image,
-            '/camera/color/image_raw',  # LIMO 실제 토픽명 확인 필요
+            topic,  # LIMO 실제 토픽명 확인 필요
             self.listener_callback,
             10)
         
@@ -51,6 +55,7 @@ class QRRegistrationNode(Node):
                 
                 self.waiting_number += 1
                 self.is_processing = True
+                break  # 첫 번째 QR 코드만 처리
 
         except Exception as e:
             self.get_logger().error(f'Error: {e}')
