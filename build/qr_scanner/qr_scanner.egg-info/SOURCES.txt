@@ -2,8 +2,7 @@ package.xml
 setup.cfg
 setup.py
 qr_scanner/__init__.py
-qr_scanner/qr_scanner_node.py
-qr_scanner/url_launcher_node.py
+qr_scanner/qr_registration.py
 qr_scanner.egg-info/PKG-INFO
 qr_scanner.egg-info/SOURCES.txt
 qr_scanner.egg-info/dependency_links.txt
