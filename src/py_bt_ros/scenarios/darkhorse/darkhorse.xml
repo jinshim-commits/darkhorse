@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root BTCPP_format="4">
   <BehaviorTree ID="MainTree">
-
     <Sequence name="HospitalFlow">
       <WaitForQR/> 
-
-
       <SpeakAction/> 
 
       <KeepRunningUntilFailure name="VisitLoop">
         <Sequence name="PerDepartment">
-
           <Think/>
-
           <SpeakAction/>
 
           <ReactiveFallback name="EmergencyOrMove">
-            
             <Sequence name="EmergencyReturn">
               <IsEmergencyPressed/>
-              
               <ControlSiren enable="true"/>
-
               <SetAbort/>
               <SpeakAction/>
-              
-              <GoToInfoDesk/>
-
+              <ForceSuccess>
+                  <GoToInfoDesk/>
+              </ForceSuccess>
               <ControlSiren enable="false"/>
             </Sequence>
 
@@ -34,49 +26,28 @@
               <WaitSpeedOK/>
               <Move/>
             </ReactiveSequence>
-
           </ReactiveFallback>
 
           <CheckAbort/>
-
           <SpeakAction/>
-
           <WaitDoctorDone/>
-
           <SpeakAction/>
-
         </Sequence>
       </KeepRunningUntilFailure>
 
       <GoToInfoDesk/>
-
       <SendDiagnosisEmail/>
-
     </Sequence>
-
   </BehaviorTree>
 
   <TreeNodesModel>
-    <Action ID="WaitForQR"/>
-    <Action ID="SpeakAction"/>
-    <Action ID="Think"/>
-    <Action ID="WaitSpeedOK"/>
-    <Action ID="Move"/>
-    <Action ID="ReturnHome"/>
-    <Action ID="GoToInfoDesk"/> 
-    <Action ID="WaitDoctorDone"/>
-    <Action ID="SendDiagnosisEmail"/>
-    <Action ID="SetAbort"/>
-    <Action ID="CheckAbort"/>
-    <Control ID="ReactiveSequence"/>
-
-    <Condition ID="IsEmergencyPressed"/>
-
-    <Control ID="KeepRunningUntilFailure"/>
-    <Control ID="ReactiveFallback"/>
-
-    <Action ID="ControlSiren">
-        <input_port name="enable" type="bool"/>
-    </Action>
+    <Action ID="WaitForQR"/> <Action ID="SpeakAction"/> <Action ID="Think"/>
+    <Action ID="WaitSpeedOK"/> <Action ID="Move"/> <Action ID="ReturnHome"/>
+    <Action ID="GoToInfoDesk"/> <Action ID="WaitDoctorDone"/> <Action ID="SendDiagnosisEmail"/>
+    <Action ID="SetAbort"/> <Action ID="CheckAbort"/>
+    <Control ID="ReactiveSequence"/> <Condition ID="IsEmergencyPressed"/>
+    <Control ID="KeepRunningUntilFailure"/> <Control ID="ReactiveFallback"/>
+    <Control ID="ForceSuccess"/>
+    <Action ID="ControlSiren"><input_port name="enable" type="bool"/></Action>
   </TreeNodesModel>
 </root>
