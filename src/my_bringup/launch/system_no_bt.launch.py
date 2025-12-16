@@ -10,7 +10,7 @@ def generate_launch_description():
     # smart_dispatcher의 launch 파일 이름은 환경마다 다를 수 있어서 인자로 받게 함
     dispatcher_launch_file_arg = DeclareLaunchArgument(
         'dispatcher_launch_file',
-        default_value='system_start_launch.py',  # 네가 수동으로 치던 이름
+        default_value='system_start.launch.py',  # 네가 수동으로 치던 이름
         description='Launch file name in smart_dispatcher/launch'
     )
     dispatcher_launch_file = LaunchConfiguration('dispatcher_launch_file')
